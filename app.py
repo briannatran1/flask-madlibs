@@ -14,3 +14,14 @@ def show_form():
     """Shows form based story instance"""
 
     return render_template("questions.html", prompts=silly_story.prompts)
+
+
+@app.get("/results")
+def show_story():
+    """Generates story based on form input values"""
+
+    answers = request.args
+
+    story_text = silly_story.get_result_text(answers)
+
+    return render_template("results.html", story=story_text)
