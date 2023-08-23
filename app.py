@@ -20,8 +20,6 @@ def show_form():
 def show_story():
     """Generates story based on form input values"""
 
-    answers = request.args
-
-    story_text = silly_story.get_result_text(answers)
+    story_text = silly_story.get_result_text(request.args)
 
     return render_template("results.html", story=story_text)
