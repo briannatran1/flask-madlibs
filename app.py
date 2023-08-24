@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 
 
-from stories import silly_story, STORIES_DICT
+from stories import STORIES_DICT
 # import stories
 
 app = Flask(__name__)
@@ -24,7 +24,9 @@ def show_form():
     selected_story = STORIES_DICT[request.args["story_name"]]
     story_title = request.args["story_name"]
 
-    return render_template("questions.html", prompts=selected_story.prompts, story_name=story_title)
+    return render_template("questions.html",
+                           prompts=selected_story.prompts,
+                           story_name=story_title)
 
 
 @app.get("/<story_name>/results")
@@ -33,4 +35,5 @@ def show_story(story_name):
 
     story_text = STORIES_DICT[story_name].get_result_text(request.args)
 
-    return render_template("results.html", story=story_text)
+    return render_template("results.html",
+                           story=story_text)
