@@ -1,3 +1,5 @@
+from random import randint
+
 """Madlibs Stories."""
 
 
@@ -23,6 +25,7 @@ class Story:
 
         self.prompts = words
         self.template = text
+        self.id = randint(1, 10)
 
     def get_result_text(self, answers):
         """Return result text from dictionary of {prompt: answer, ...}."""
@@ -51,4 +54,4 @@ excited_story = Story(
     """OMG!! OMG!! I love to {verb} a {noun}!"""
 )
 
-STORIES_DICT = {"silly story": silly_story, "excited story": excited_story}
+STORIES_DICT = {"silly_story": silly_story, "excited_story": excited_story}

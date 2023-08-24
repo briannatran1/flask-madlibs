@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 
+
 from stories import silly_story, STORIES_DICT
+# import stories
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret"
@@ -20,14 +22,15 @@ def show_homepage():
 def show_form():
     """Shows form based story instance"""
     selected_story = STORIES_DICT[request.args["story_name"]]
+    story_title = request.args["story_name"]
 
-    return render_template("questions.html", prompts=selected_story.prompts)
+    return render_template("questions.html", prompts=selected_story.prompts, story_name=story_title)
 
 
-@app.get("<story_code>/results")
-def show_story():
+@app.get("/<story_name>/results")
+def show_story(story_name):
     """Generates story based on form input values"""
 
-    story_text = selected_story.get_result_text(request.args)
+    story_text = STORIES_DICT[story_name].get_result_text(request.args)
 
     return render_template("results.html", story=story_text)
