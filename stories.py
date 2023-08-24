@@ -50,3 +50,5 @@ excited_story = Story(
     ["noun", "verb"],
     """OMG!! OMG!! I love to {verb} a {noun}!"""
 )
+
+STORIES_DICT = {"silly story": silly_story, "excited story": excited_story}
